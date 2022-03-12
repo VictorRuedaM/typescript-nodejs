@@ -105,3 +105,6 @@ dist
 package-lock.json
 
 nodemon.json
+
+build/
+build/index.js
