@@ -6,6 +6,7 @@ import {engine} from 'express-handlebars';
 import morgan from 'morgan';
 import path from 'path';
 import routes from './routes/index.routes';
+import routesBooks from './routes/books.routes';
 
 
 //Initializations
@@ -18,7 +19,8 @@ app.engine('.hbs', engine({
     extname: '.hbs',
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
-    helpers: helpers
+    helpers: helpers,
+    defaultLayout: 'main'
 }));
 app.set('view engine', '.hbs');
 
@@ -30,6 +32,7 @@ app.use(morgan('dev'));
 
 //Routes
 app.use('/', routes);
+app.use('/books', routesBooks);
 
 //Static files
 app.use(express.static(path.join(__dirname, 'public')));
